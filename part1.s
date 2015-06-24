@@ -54,18 +54,22 @@ _ft_isupper:
 
 	global	_ft_isalpha
 _ft_isalpha:
+	push	rbx
 	call	_ft_isupper
 	mov		rbx,rax
 	call	_ft_islower
 	or		rax,rbx
+	pop		rbx
 	ret
 
 	global	_ft_isalnum
 _ft_isalnum:
+	push	rbx
 	call	_ft_isalpha
 	mov		rbx,rax
 	call	_ft_isdigit
 	or		rax,rbx
+	pop		rbx
 	ret
 
 	global	_ft_isprint
