@@ -18,3 +18,14 @@ _ft_isascii:
 	or		rax,rdi
 	not		rax
 	ret
+
+	global	_ft_isdigit
+_ft_isdigit:
+	mov		rax,0
+	cmp		rdi,'0'
+	jl		.return
+	cmp		rdi,'9'
+	jg		.return
+	mov		rax,1
+.return:
+	ret
