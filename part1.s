@@ -29,3 +29,52 @@ _ft_isdigit:
 	mov		rax,1
 .return:
 	ret
+
+	global	_ft_islower
+_ft_islower:
+	mov		rax,0
+	cmp		rdi,'a'
+	jl		.return
+	cmp		rdi,'z'
+	jg		.return
+	mov		rax,1
+.return:
+	ret
+
+	global	_ft_isupper
+_ft_isupper:
+	mov		rax,0
+	cmp		rdi,'A'
+	jl		.return
+	cmp		rdi,'Z'
+	jg		.return
+	mov		rax,1
+.return:
+	ret
+
+	global	_ft_isalpha
+_ft_isalpha:
+	call	_ft_isupper
+	mov		rbx,rax
+	call	_ft_islower
+	or		rax,rbx
+	ret
+
+	global	_ft_isalnum
+_ft_isalnum:
+	call	_ft_isalpha
+	mov		rbx,rax
+	call	_ft_isdigit
+	or		rax,rbx
+	ret
+
+	global	_ft_isprint
+_ft_isprint:
+	mov		rax,0
+	cmp		rdi,' '
+	jl		.return
+	cmp		rdi,'~'
+	jg		.return
+	mov		rax,1
+.return:
+	ret
