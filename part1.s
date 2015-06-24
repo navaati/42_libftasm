@@ -1,20 +1,20 @@
-	section .text
+	section	.text
 
-	global _ft_bzero
+	global	_ft_bzero
 _ft_bzero:
-	cmp rsi,0
-	jmp .cond
+	cmp		rsi,0
+	jmp		.cond
 .loop:
-	mov byte [rdi],0
-	inc rdi
-	dec rsi
+	mov		byte[rdi],0
+	inc		rdi
+	dec		rsi
 .cond:
-	jnz .loop
+	jnz		.loop
 	ret
 
-	global _ft_isascii
+	global	_ft_isascii
 _ft_isascii:
-	mov rax,~1000_0000b
-	or rax,rdi
-	not rax
+	mov		rax,~1000_0000b
+	or		rax,rdi
+	not		rax
 	ret
