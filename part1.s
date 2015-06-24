@@ -82,3 +82,25 @@ _ft_isprint:
 	mov		rax,1
 .return:
 	ret
+
+	global	_ft_tolower
+_ft_tolower:
+	push	rdi
+	call	_ft_isupper
+	cmp		rax,0
+	pop		rax
+	je		.return
+	add		rax,'a'-'A'
+.return:
+	ret
+
+	global	_ft_toupper
+_ft_toupper:
+	push	rdi
+	call	_ft_islower
+	cmp		rax,0
+	pop		rax
+	je		.return
+	sub		rax,'a'-'A'
+.return:
+	ret
