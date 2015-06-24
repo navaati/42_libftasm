@@ -11,3 +11,10 @@ _ft_bzero:
 .cond:
 	jnz .loop
 	ret
+
+	global _ft_isascii
+_ft_isascii:
+	mov rax,~1000_0000b
+	or rax,rdi
+	not rax
+	ret
