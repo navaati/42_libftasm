@@ -2,14 +2,13 @@
 
 	global	_ft_bzero
 _ft_bzero:
-	cmp		rsi,0
-	jmp		.cond
+	mov		rcx,rsi
+	jecxz	.return
 .loop:
 	mov		byte[rdi],0
 	inc		rdi
-	dec		rsi
-.cond:
-	jnz		.loop
+	loop	.loop
+.return:
 	ret
 
 	global	_ft_isascii
