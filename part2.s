@@ -9,3 +9,13 @@ _ft_strlen:
 	mov		rax,-2
 	sub		rax,rcx
 	ret
+
+	global	_ft_memset
+_ft_memset:
+	mov		rcx,rdx
+	mov		rdx,rdi
+	mov		rax,rsi
+	cld
+	rep stosb
+	mov		rax,rdx
+	ret
