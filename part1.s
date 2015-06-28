@@ -110,6 +110,7 @@ _ft_toupper:
 .return:
 	ret
 
+	global	write_stdout
 write_stdout:
 	mov		rax,0x2000004
 	mov		rdi,1
