@@ -1,3 +1,9 @@
+	extern	_ft_strlen
+
+	section	.data
+nullmsg	db	`(null)\n`
+.len	equ	$-nullmsg
+
 	section	.text
 
 	global	_ft_bzero
@@ -102,4 +108,37 @@ _ft_toupper:
 	je		.return
 	sub		rax,'a'-'A'
 .return:
+	ret
+
+write_stdout:
+	mov		rax,0x2000004
+	mov		rdi,1
+	syscall
+	jnc		.return
+	mov		rax,-1
+.return:
+	ret
+
+	global	_ft_puts
+_ft_puts:
+	cmp		rdi,0
+	jne		.not_null
+	lea		rsi,[rel nullmsg]
+	mov		rdx,nullmsg.len
+	call	write_stdout
+	ret
+.not_null:
+	push	rbx					; buf
+	mov		rbx,rdi
+	call	_ft_strlen
+	mov		rsi,rbx
+	mov		rdx,rax
+	call	write_stdout
+	cmp		rax,-1
+	je		.return
+	lea		rsi,[rel nullmsg+6]
+	mov		rdx,1
+	call	write_stdout
+.return:
+	pop		rbx
 	ret
