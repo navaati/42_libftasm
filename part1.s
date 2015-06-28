@@ -142,3 +142,19 @@ _ft_puts:
 .return:
 	pop		rbx
 	ret
+
+	global	_ft_strcat
+_ft_strcat:
+	push	rbx					; s1
+	mov		rbx,rdi
+	mov		rax,0
+	mov		rcx,-1
+	repnz scasb
+	dec		rdi
+.loop:
+	movsb
+	cmp		byte[rsi - 1],0
+	jne		.loop
+	mov		rax,rbx
+	pop		rbx
+	ret
