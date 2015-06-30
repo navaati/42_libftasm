@@ -18,13 +18,13 @@ _ft_cat:
 .loop:
 	mov		rdi,rbp
 	mov		rdx,4096
-	lea		rsi,[rsp - 4096]
+	mov		rsi,rsp
 	call	read
 	cmp		rax,-1
 	je		.return
 	cmp		rax,0
 	je		.return
-	lea		rsi,[rsp - 4096]
+	mov		rsi,rsp
 	mov		rdx,rax
 	call	write_stdout
 	jmp		.loop
