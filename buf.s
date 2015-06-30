@@ -1,8 +1,35 @@
-	extern	_malloc
+extern	_malloc
 
-	section	.text
+section	.text
 
-	global	_ft_strlen
+global	_ft_bzero
+_ft_bzero:
+	mov		rcx,rsi
+	jecxz	.return
+.loop:
+	mov		byte[rdi],0
+	inc		rdi
+	loop	.loop
+.return:
+	ret
+
+global	_ft_strcat
+_ft_strcat:
+	push	rbx					; s1
+	mov		rbx,rdi
+	mov		rax,0
+	mov		rcx,-1
+	repnz scasb
+	dec		rdi
+.loop:
+	movsb
+	cmp		byte[rsi - 1],0
+	jne		.loop
+	mov		rax,rbx
+	pop		rbx
+	ret
+
+global	_ft_strlen
 _ft_strlen:
 	mov		rax,0
 	mov		rcx,-1
@@ -12,7 +39,7 @@ _ft_strlen:
 	sub		rax,rcx
 	ret
 
-	global	_ft_memset
+global	_ft_memset
 _ft_memset:
 	mov		rcx,rdx
 	mov		rdx,rdi
@@ -22,7 +49,7 @@ _ft_memset:
 	mov		rax,rdx
 	ret
 
-	global	_ft_memcpy
+global	_ft_memcpy
 _ft_memcpy:
 	mov		rcx,rdx
 	mov		rdx,rdi
@@ -31,7 +58,7 @@ _ft_memcpy:
 	mov		rax,rdx
 	ret
 
-	global	_ft_strdup
+global	_ft_strdup
 _ft_strdup:
 	push	rbx 				; orig address
 	push	rbp					; string size
