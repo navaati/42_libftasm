@@ -18,3 +18,6 @@ clean:
 re:
 	$(MAKE) fclean
 	$(MAKE) all
+
+test: $(NAME)
+	opentester run $<
