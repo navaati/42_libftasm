@@ -7,7 +7,7 @@ section	.text
 global	_ft_bzero
 _ft_bzero:
 	mov		rcx,rsi
-	jecxz	.return
+	jrcxz	.return
 .loop:
 	mov		byte[rdi],0
 	inc		rdi
