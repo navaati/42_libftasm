@@ -21,6 +21,7 @@ _ft_strcat:
 	mov		rbx,rdi
 	mov		rax,0
 	mov		rcx,-1
+	cld
 	repnz scasb
 	dec		rdi
 .loop:
