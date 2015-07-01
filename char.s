@@ -4,7 +4,7 @@ section	.text
 
 global	_ft_isascii
 _ft_isascii:
-	mov		rax,~1000_0000b
+	mov		rax,~(1 << 7)
 	or		rax,rdi
 	not		rax
 	ret
