@@ -1,3 +1,5 @@
+%include	"macros.nasm"
+
 extern	_malloc
 
 section	.text
@@ -31,12 +33,7 @@ _ft_strcat:
 
 global	_ft_strlen
 _ft_strlen:
-	mov		rax,0
-	mov		rcx,-1
-	cld
-	repnz scasb
-	mov		rax,-2
-	sub		rax,rcx
+	strlen
 	ret
 
 global	_ft_memset
@@ -63,7 +60,7 @@ _ft_strdup:
 	push	rbx 				; orig address
 	push	rbp					; string size
 	mov		rbx,rdi
-	call	_ft_strlen
+	strlen
 	mov		rdi,rax
 	mov		rbp,rax
 	call	_malloc

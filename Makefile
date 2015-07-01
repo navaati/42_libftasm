@@ -6,6 +6,8 @@ ASFLAGS = -f macho64
 
 all: $(NAME)
 
+$(OBJS): macros.nasm
+
 $(NAME): $(OBJS)
 	ar rcs $@ $+
 

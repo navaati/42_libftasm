@@ -1,3 +1,5 @@
+%include	"macros.nasm"
+
 section	.text
 
 global	_ft_isascii
@@ -9,35 +11,18 @@ _ft_isascii:
 
 global	_ft_isdigit
 _ft_isdigit:
-	mov		rax,0
-	cmp		rdi,'0'
-	jl		.return
-	cmp		rdi,'9'
-	jg		.return
-	mov		rax,1
+	between	'0','9'
 .return:
 	ret
 
 global	_ft_islower
 _ft_islower:
-	mov		rax,0
-	cmp		rdi,'a'
-	jl		.return
-	cmp		rdi,'z'
-	jg		.return
-	mov		rax,1
-.return:
+	between	'a','z'
 	ret
 
 global	_ft_isupper
 _ft_isupper:
-	mov		rax,0
-	cmp		rdi,'A'
-	jl		.return
-	cmp		rdi,'Z'
-	jg		.return
-	mov		rax,1
-.return:
+	between	'A','Z'
 	ret
 
 global	_ft_isalpha
@@ -62,13 +47,7 @@ _ft_isalnum:
 
 global	_ft_isprint
 _ft_isprint:
-	mov		rax,0
-	cmp		rdi,' '
-	jl		.return
-	cmp		rdi,'~'
-	jg		.return
-	mov		rax,1
-.return:
+	between	' ','~'
 	ret
 
 global	_ft_tolower
